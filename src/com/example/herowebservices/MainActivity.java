@@ -3,7 +3,9 @@ package com.example.herowebservices;
 import com.example.vishnuwebservices.R;
 
 import android.support.v7.app.ActionBarActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.DocumentsProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -35,4 +37,29 @@ public class MainActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+     private class GetHeroesTask extends AsyncTask<String, String, String>{
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+		}
+    	 
+    	@Override
+		protected String doInBackground(String... arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+    	 
+    	@Override
+    	protected void onPostExecute(String result) {
+    		// TODO Auto-generated method stub
+    		super.onPostExecute(result);
+    	}
+    	 
+    	 
+     }
+
+
 }
