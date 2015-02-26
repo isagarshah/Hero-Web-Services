@@ -1,65 +1,86 @@
 package com.example.herowebservices;
 
-import com.example.vishnuwebservices.R;
+import javax.crypto.spec.SecretKeySpec;
 
-import android.support.v7.app.ActionBarActivity;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.DocumentsProvider;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	
+	
+	
+	
+	}
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
-     private class GetHeroesTask extends AsyncTask<String, String, String>{
+	private class GetHeroesTask extends AsyncTask<String, String, String>{
 
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 		}
-    	 
-    	@Override
+
+		@Override
 		protected String doInBackground(String... arg0) {
-			// TODO Auto-generated method stub
-			return null;
+
+			String result = HTTPUtils.HTTP_GET("http://vishnu.pw/ng/Marvel/js/data/characters.json");
+			return result;
+			
 		}
-    	 
-    	@Override
-    	protected void onPostExecute(String result) {
-    		// TODO Auto-generated method stub
-    		super.onPostExecute(result);
-    	}
-    	 
-    	 
-     }
+
+		@Override
+		protected void onPostExecute(String result) {
+			
+			try {
+				
+				JSONObject  jsonObj = new JSONObject(result);
+				JSONArray heroesJSONArray = jsonObj.getJSONObject("data").getJSONArray("results");
+				
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			super.onPostExecute(result);
+		}
+
+
+	}
 
 
 }
