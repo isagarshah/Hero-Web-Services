@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 public class HeroesAdapter extends BaseAdapter {
 
 	ArrayList<Hero> heroes;
@@ -46,12 +48,13 @@ public class HeroesAdapter extends BaseAdapter {
 
 		Hero hero = getItem(arg0);
 
-		ImageView img = (ImageView) v.findViewById(R.id.img1);
+		ImageView imgView = (ImageView) v.findViewById(R.id.img1);
 		TextView tvLarge = (TextView) v.findViewById(R.id.tv1);
 		TextView tvMedium = (TextView) v.findViewById(R.id.tv2);
 
-		img.setImageResource(R.drawable.ic_launcher);
-		tvLarge.setText(hero.getName());
+		ImageLoader.getInstance().displayImage(hero.getImagepath(), imgView);
+		//img.setImageResource(R.drawable.ic_launcher);
+		tvLarge.setText(hero.getName());//
 		tvMedium.setText(hero.getDescription());
 
 

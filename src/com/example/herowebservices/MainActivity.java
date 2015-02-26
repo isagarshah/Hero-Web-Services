@@ -1,19 +1,22 @@
 package com.example.herowebservices;
 
 import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.annotation.SuppressLint;
+
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-@SuppressLint("NewApi") public class MainActivity extends ActionBarActivity {
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+public class MainActivity extends ActionBarActivity {
 	ListView lv; 
 	
 	
@@ -21,16 +24,23 @@ import android.widget.ListView;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		//not this jar :D
+		
+		DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+        .cacheInMemory(true)
+        .cacheOnDisk(true)
+        .build();
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+        .defaultDisplayImageOptions(defaultOptions)
+        .build();
+
 		
 		 
 		lv = (ListView) findViewById(R.id.listView1);
 		
 		
 		GetHeroesTask getHeroesTask = new GetHeroesTask();
-		if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB)
-		    getHeroesTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-		else
-		    getHeroesTask.execute();
+		getHeroesTask.execute();
 		//thats it
 	}
 
@@ -67,7 +77,8 @@ import android.widget.ListView;
 		protected String doInBackground(String... arg0) {
 
 			String result = HTTPUtils
-					.HTTP_GET("http://vishnu.pw/ng/Marvel/js/data/characters.json");
+					.HTTP_GET("http://vishnu.pw/ng/Marvel/js/data/chars.json");
+			//http://vishnu.pw/ng/Marvel/js/data/characters.json
 			
 			return result;
 
