@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">HeroWebServices</string>
+    <string name="app_name">Super Hero WebServices</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="tv1">Large Text</string>
+    <string name="tv2">Medium Text</string>
 
 </resources>
