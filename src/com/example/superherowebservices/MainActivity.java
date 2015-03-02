@@ -53,8 +53,10 @@ public class MainActivity extends ActionBarActivity {
 		protected String doInBackground(String... arg0) {
 
 			String result = HTTPUtils
-					.HTTP_GET("http://vishnu.pw/ng/Marvel/js/data/chars.json");
+					.HTTP_GET("http://www.isagarshah.com/testData/SuperHero%20JSON%20New.txt");
 			return result;
+			//http://www.isagarshah.com/testData/SuperHero%20JSON.txt
+			//http://www.isagarshah.com/testData/SuperHero%20JSON%20New.txt
 
 		}
 		// NEW
